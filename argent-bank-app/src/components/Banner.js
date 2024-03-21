@@ -1,11 +1,11 @@
 // Banner component
 import React from "react";
-import '../styles/Banner';
+import '../styles/Banner.css';
 
 function Banner () {
     return (
         <div className='banner'>
-            <section className='introduction'>
+            <section className='hero-content'>
                 <h2 className='sr-only'>Promoted Content</h2>
                 <p className='subtitle'>No fees.</p>
                 <p className='subtitle'>No minimum deposit.</p>
