@@ -7,6 +7,14 @@
     padding: 2rem;
   }
 
+  html {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
+
   .sign-in-button {
     display: block;
     width: 100%;
