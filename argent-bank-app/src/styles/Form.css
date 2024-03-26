@@ -46,4 +46,8 @@
   .input-remember label {
     margin-left: 0.25rem;
   }
+
+  .error-message {
+    color: red; /* Set text color to red */
+  }
   

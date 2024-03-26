@@ -2,11 +2,12 @@
 
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { loginSuccess } from '../redux/actions/authActions';
+import { loginSuccess, loginFailed } from '../redux/actions/authActions';
 import '../styles/Form.css';
 
 function Form() {
   const dispatch = useDispatch();
+  const [errorMessage, setErrorMessage] = useState(null); // State to store error message
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -21,25 +22,24 @@ function Form() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }), // Send username and password in the request body
+        body: JSON.stringify({ email, password }),
       });
 
       if (response.ok) {
         const data = await response.json();
         const token = data.body.token;
 
-        // Dispatch the loginSuccess action with the token
         dispatch(loginSuccess(token));
-
-        // Optionally, you can store the token in session or local storage
         sessionStorage.setItem("token", token);
+        setErrorMessage(null);
 
       } else {
-        // Handle login failure
-        console.error("Login failed");
+        setErrorMessage("Invalid credentials");
+        dispatch(loginFailed("Invalid credentials")); 
       }
     } catch (error) {
       console.error("Error:", error);
+      setErrorMessage("An unexpected error occurred."); // Set generic error message
     }
   };
 
@@ -62,6 +62,7 @@ function Form() {
             <label htmlFor="remember-me">Remember me</label>
           </div>
           <button className="sign-in-button" type="submit">Sign In</button>
+          {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Render error message if any */}
         </form>
       </section>
     </main>
