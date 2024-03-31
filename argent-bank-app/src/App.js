@@ -13,15 +13,15 @@ function App() {
 
   return (
     <BrowserRouter>
-    <div className="App">
-      <Header /> 
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/login' element={<Login />} />
-        <Route path="/profile" element={isAuthenticated ? <Profile /> : <Navigate to="/login" />} />
-      </Routes>
-      <Footer />
-    </div>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/login' element={<Login />} />
+          <Route path="/profile" element={isAuthenticated ? <Profile /> : <Navigate to="/login" />} />
+        </Routes>
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 }

@@ -2,21 +2,22 @@
 
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import { loginSuccess, loginFailed } from '../redux/actions/authActions';
 import '../styles/Form.css';
 
 function Form() {
+  const [email, setEmail] = useState(''); 
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState(null);
+
   const dispatch = useDispatch();
-  const [errorMessage, setErrorMessage] = useState(null); // State to store error message
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const email = event.target.elements.email.value;
-    const password = event.target.elements.password.value;
-
     try {
-      // Make a fetch request to your login API endpoint
       const response = await fetch("http://localhost:3001/api/v1/user/login", {
         method: "POST",
         headers: {
@@ -28,10 +29,9 @@ function Form() {
       if (response.ok) {
         const data = await response.json();
         const token = data.body.token;
-
-        dispatch(loginSuccess(token));
+        dispatch(loginSuccess(token)); 
         sessionStorage.setItem("token", token);
-        setErrorMessage(null);
+        navigate('/profile'); 
 
       } else {
         setErrorMessage("Invalid credentials");
@@ -39,7 +39,7 @@ function Form() {
       }
     } catch (error) {
       console.error("Error:", error);
-      setErrorMessage("An unexpected error occurred."); // Set generic error message
+      setErrorMessage("An unexpected error occurred."); 
     }
   };
 
@@ -51,18 +51,18 @@ function Form() {
         <form className="form-container" onSubmit={handleSubmit}>
           <div className="input-wrapper">
             <label htmlFor="email">Username</label>
-            <input type="text" id="email" name="email" />
+            <input type="text" id="email" value={email} onChange={(event) => setEmail(event.target.value)} />
           </div>
           <div className="input-wrapper">
             <label htmlFor="password">Password</label>
-            <input type="password" id="password" name="password" />
+            <input type="password" id="password" value={password} onChange={(event) => setPassword(event.target.value)} />
           </div>
           <div className="input-remember">
             <input type="checkbox" id="remember-me" />
             <label htmlFor="remember-me">Remember me</label>
           </div>
           <button className="sign-in-button" type="submit">Sign In</button>
-          {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Render error message if any */}
+          {errorMessage && <p className="error-message">{errorMessage}</p>} 
         </form>
       </section>
     </main>

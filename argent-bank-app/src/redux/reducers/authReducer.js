@@ -1,29 +1,36 @@
 // reducers/authReducer.js
-import { createSlice } from '@reduxjs/toolkit';
 
-const authSlice = createSlice({
-  name: 'auth',
-  initialState: {
+const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+const LOGIN_FAIL = "LOGIN_FAIL";
+
+const initialState = {
+    status: "VOID",
     isAuthenticated: false,
-    user: null,
+    token: null,
     error: null,
-  },
+}
 
-  reducers: {
-    login(state, action) {
-      state.isAuthenticated = true;
-      state.user = action.payload;
-      state.error = null; 
-    },
-    logout(state) {
-      state.isAuthenticated = false;
-      state.user = null;
-      state.error = null; 
-    },
-    loginFailed(state, action) {
-      state.error = action.payload;
-    },
-  },
-});
-
-export default authSlice.reducer;
+export const authReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case LOGIN_SUCCESS:
+            return {
+                ...state,
+                status: "SUCCEEDED",
+                isAuthenticated: true,
+                token: action.payload,
+                error: null
+            }
+        
+        case LOGIN_FAIL: {
+            return {
+                ...state,
+                status: "FAILED",
+                isAuthenticated: false,
+                error: action.payload
+            }
+        }  
+ 
+        default:
+            return state;
+    }
+}
