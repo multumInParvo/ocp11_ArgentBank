@@ -1,7 +1,8 @@
 // authActions.js
 
-const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-const LOGIN_FAIL = "LOGIN_FAIL";
+const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+const LOGIN_FAIL = 'LOGIN_FAIL'
+const LOGOUT = 'LOGOUT'
 
 export const loginSuccess = (token) => {
   return {
@@ -9,6 +10,12 @@ export const loginSuccess = (token) => {
     payload: token,
   }
 }
+
+export const logout = () => {
+  return {
+      type: LOGOUT,
+  }
+} 
 
 export const loginFailed = (error) => {
   return {

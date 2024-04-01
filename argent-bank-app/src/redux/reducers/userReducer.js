@@ -1,6 +1,7 @@
 // reducers/userReducer.js
 
 const GET_USERPROFILE = "GET_USERPROFILE"
+const LOGOUT = "LOGOUT"
 
 const initialState = {
     status: 'VOID',
@@ -15,9 +16,13 @@ export const userReducer = (state = initialState, action) => {
                 status: 'SUCCEEDED',
                 userData: action.payload,
             };
-        default:
-            return state;
-    }
-};
-
+            case LOGOUT:
+                return {
+                    ...state,
+                    userData: {}, 
+                };
+                default:
+                    return state;
+            }
+        };
 export default userReducer;

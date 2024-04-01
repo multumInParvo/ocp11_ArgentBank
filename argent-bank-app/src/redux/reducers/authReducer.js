@@ -1,7 +1,8 @@
 // reducers/authReducer.js
 
-const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-const LOGIN_FAIL = "LOGIN_FAIL";
+const LOGIN_SUCCESS = "LOGIN_SUCCESS"
+const LOGIN_FAIL = "LOGIN_FAIL"
+const LOGOUT = "LOGOUT"
 
 const initialState = {
     status: "VOID",
@@ -28,6 +29,10 @@ export const authReducer = (state = initialState, action) => {
                 isAuthenticated: false,
                 error: action.payload
             }
+        }  
+
+        case LOGOUT: {
+            return initialState;
         }  
  
         default:
