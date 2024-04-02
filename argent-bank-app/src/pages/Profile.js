@@ -40,7 +40,7 @@ function Profile() {
     }, [dispatch, token]);
 
     return (
-        <main className="dark">
+        <main className="bg-dark">
             <h1>Welcome back, {userProfileData.firstName} {userProfileData.lastName}!</h1>
         </main>
     );
