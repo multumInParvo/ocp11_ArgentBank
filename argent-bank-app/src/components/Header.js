@@ -9,8 +9,7 @@ import argentBankLogo from '../img/argentBankLogo.png';
 
 function Header() {
   const isAuthenticated = useSelector((state) => state.auth.token);
-  const firstname = useSelector((state) => state.user.userData.firstName);
-  const lastname = useSelector((state) => state.user.userData.lastName);
+  const username = useSelector((state) => state.user.userData.userName);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,11 +30,10 @@ function Header() {
         />
       </a>
 
-
       {isAuthenticated ? (
         <div className='authenticated'>
           <Link to='/profile'>
-            <p>{firstname} {lastname}</p>
+            <p>{username}</p>
           </Link>
           <Link to='/' onClick={logoutHandler}>
             <p>Sign out</p>
