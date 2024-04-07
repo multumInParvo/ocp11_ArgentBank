@@ -1,0 +1,13 @@
+.edit-profile-title {
+    color: aliceblue;
+}
+
+.edit-profile label {
+    color: aliceblue;
+}
+
+.edit-profile {
+    display: flex;
+    flex-direction: column;
+    padding: 0 200px 0 200px;
+}
