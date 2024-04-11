@@ -1,10 +1,12 @@
 // Form component
 
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react"
+import { useDispatch } from "react-redux"
+import { useNavigate } from 'react-router-dom'
 import { loginSuccess, loginFailed } from '../redux/actions/authActions';
-import '../styles/Form.css';
+import '../styles/Form.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
 
 function Form() {
   const [email, setEmail] = useState(''); 
@@ -46,7 +48,7 @@ function Form() {
   return (
     <main className="main">
       <section className="sign-in-content">
-        <i className="fa fa-user-circle sign-in-icon"></i>
+      <FontAwesomeIcon className='faCircleUser' icon={faCircleUser} />
         <h1>Sign In</h1>
         <form className="form-container" onSubmit={handleSubmit}>
           <div className="input-wrapper">
@@ -59,7 +61,7 @@ function Form() {
           </div>
           <div className="input-remember">
             <input type="checkbox" id="remember-me" />
-            <label htmlFor="remember-me">Remember me</label>
+            <label className="input-remember-text" htmlFor="remember-me">Remember me</label>
           </div>
           <button className="sign-in-button" type="submit">Sign In</button>
           {errorMessage && <p className="error-message">{errorMessage}</p>} 

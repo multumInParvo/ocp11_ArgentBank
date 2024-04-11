@@ -1,15 +1,17 @@
 // Header component
 
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../redux/actions/authActions';
-import '../styles/Header.css';
-import argentBankLogo from '../img/argentBankLogo.png';
+import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { logout } from '../redux/actions/authActions'
+import '../styles/Header.css'
+import argentBankLogo from '../img/argentBankLogo.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleUser, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 
 function Header() {
   const isAuthenticated = useSelector((state) => state.auth.token);
-  const username = useSelector((state) => state.user.userData.userName);
+  const username = useSelector((state) => state.user.userData?.userName);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -22,28 +24,31 @@ function Header() {
 
   return (
     <nav className="main-nav">
-      <a className="main-nav-logo" href="./index.html">
+      <Link className="main-nav-logo" to="/">
         <img
           className="main-nav-logo-image"
           src={argentBankLogo}
           alt="Argent Bank Logo"
         />
-      </a>
+      </Link>
 
       {isAuthenticated ? (
         <div className='authenticated'>
-          <Link to='/profile'>
-            <p>{username}</p>
+          <Link className='main-nav-item' to='/profile'>
+          <FontAwesomeIcon className='faCircleUser' icon={faCircleUser} />
+            {username}
           </Link>
-          <Link to='/' onClick={logoutHandler}>
-            <p>Sign out</p>
+          <Link className='main-nav-item' to='/' onClick={logoutHandler}>
+          <FontAwesomeIcon className='faRightFromBracket' icon={faRightFromBracket} />
+            Sign out
           </Link>
         </div>
 
       ) : (
 
         <div className='notAuthenticated'>
-          <Link to='/login' >
+          <Link className='main-nav-item' to='/login' >
+          <FontAwesomeIcon className='faCircleUser' icon={faCircleUser} />
             Sign In
           </Link>
         </div>

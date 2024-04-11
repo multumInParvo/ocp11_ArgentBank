@@ -5,7 +5,7 @@ import '../styles/Footer.css';
 function Footer () {
     return (
         <footer>
-            <p>Copyright 2020 Argent Bank</p>
+            <p className="footer-text">Copyright 2020 Argent Bank</p>
         </footer>
     )
 }

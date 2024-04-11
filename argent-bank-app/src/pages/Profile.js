@@ -49,7 +49,7 @@ function Profile() {
 
     return (
         <main className="bg-dark">
-            <h1 className='profile-title'>Welcome back, {userData.firstName} {userData.lastName}!</h1>
+            <h1 className='profile-title'>Welcome back<br/>{userData.firstName} {userData.lastName}!</h1>
             <EditUserName />
             {AccountData.map((data) => (
                 <Account

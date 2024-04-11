@@ -1,7 +1,11 @@
-bg-dark {
-    background-color: #12002b;
-  }
+.bg-dark {
+  background-color: #12002b;
+  margin: 0;
+  padding-bottom: 800px;
+}
 
 .profile-title {
-  color: white;
+  color: #fff;
+  margin: 0;
+  padding: 2rem 0 2rem 0;
 }

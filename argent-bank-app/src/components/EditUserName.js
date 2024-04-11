@@ -1,9 +1,11 @@
 // EditUserName component
 
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { updateUsername } from '../redux/actions/userActions';
-import '../styles/EditUserName.css';
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { updateUsername } from '../redux/actions/userActions'
+import '../styles/EditUserName.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 
 function EditUserName() {
     const token = useSelector(state => state.auth.token);
@@ -61,21 +63,28 @@ function EditUserName() {
     };
 
     return (
-        <div>
+        <div className='edit-profile-container'>
             {isEditingMode ? (
                 <form className='edit-profile' onSubmit={handleSubmit}>
-                    <h2 className='edit-profile-title'>Edit your profile</h2>
-                    <label htmlFor="username">User name:</label>
-                    <input type="text" id="username" value={userName} onChange={handleUsernameChange} />
-                    <label htmlFor="firstName">First Name:</label>
-                    <input type="text" id="firstName" value={userData.firstName} disabled />
-                    <label htmlFor="lastName">Last Name:</label>
-                    <input type="text" id="lastName" value={userData.lastName} disabled />
-                    <button type="submit">Save Changes</button>
-                    <button type="button" onClick={handleCancelEdit}>Cancel</button>
+                    <FontAwesomeIcon icon={faPenToSquare} />
+                    <h2 className='edit-profile-title'>Edit profile</h2>
+                    <div className="input-wrapper">
+                        <label htmlFor="username">Username:</label>
+                        <input type="text" id="username" value={userName} onChange={handleUsernameChange} />
+                    </div>
+                    <div className="input-wrapper">
+                        <label htmlFor="firstName">First Name:</label>
+                        <input type="text" id="firstName" value={userData.firstName} disabled />
+                    </div>
+                    <div className="input-wrapper">
+                        <label htmlFor="lastName">Last Name:</label>
+                        <input type="text" id="lastName" value={userData.lastName} disabled />
+                    </div>
+                    <button className='edit-user-button' type="submit">Save Changes</button>
+                    <button className='edit-user-button' type="button" onClick={handleCancelEdit}>Cancel</button>
                 </form>
             ) : (
-                <button onClick={handleToggleEditMode}>Edit Name</button>
+                <button className='edit-user-button' onClick={handleToggleEditMode}>Edit Name</button>
             )}
         </div>
     );
