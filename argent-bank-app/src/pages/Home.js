@@ -5,9 +5,9 @@ import Banner from '../components/Banner'
 import '../styles/Home.css'
 import FeaturesData from '../data/FeaturesData.json'
 import FeatureItem from '../components/FeatureItem'
-import imgChat from '../img/icon-chat.png'
-import imgMoney from '../img/icon-money.png'
-import imgSecurity from '../img/icon-security.png'
+import imgChat from '../img/icon-chat.webp'
+import imgMoney from '../img/icon-money.webp'
+import imgSecurity from '../img/icon-security.webp'
 
 function Home() {
 

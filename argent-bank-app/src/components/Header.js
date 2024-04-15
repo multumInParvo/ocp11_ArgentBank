@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../redux/actions/authActions'
 import '../styles/Header.css'
-import argentBankLogo from '../img/argentBankLogo.png'
+import argentBankLogo from '../img/argentBankLogo.webp'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 
