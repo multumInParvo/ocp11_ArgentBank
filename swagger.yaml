@@ -108,13 +108,13 @@ paths:
     post: 
       tags:
         - Accounts Module
-      summary: All accounts
-      description: API to retrieve all users accounts
+      summary: All User accounts
+      description: API to retrieve all accounts of the user
       security:
         - Bearer: []
       responses: 
         '200':
-          description: Users accounts retrieved successfully
+          description: User accounts retrieved successfully
           schema:
             type: array
             items:
@@ -123,18 +123,19 @@ paths:
           description: Unauthorized user
         '500':
           description: Internal Server Error
+
   /account/{accountID}/transactions:
     post:
       tags:
         - Accounts Module
       summary: Account transactions
-      description: API to retrieve a list of transactions associated with an account.
+      description: API to retrieve transactions of a specific account
       security: 
         - Bearer: []
       parameters:
         - in: path
-          name: accountID
-          description: ID of an account
+          name: accountId
+          description: ID of the account
           required: true
           type: string
       responses:
@@ -150,18 +151,19 @@ paths:
           description: Account not found
         '500':
           description: Internal Server Error
+
   /transactions/{transactionID}/category:
     put:
       tags:
         - Accounts Module
-      summary: Update transaction's category
-      description: API to update category of the transaction
+      summary: Update Transaction Category
+      description: API to update the category of a transaction
       security: 
         - Bearer: []
       parameters:
         - in: path
-          name: transactionID
-          description: ID of a transaction
+          name: transactionId
+          description: ID of the transaction
           required: true
           type: string
         - in: body
@@ -181,23 +183,24 @@ paths:
           description: Transaction not found
         '500': 
           description: Internal Server Error
+
   /transactions/{transactionID}/note:
     post:
       tags:
         - Accounts Module
-      summary: Add note to transaction
-      description: API to add note to transaction
+      summary: Add Transaction Note
+      description: API to add a note to a transaction
       security: 
         - Bearer: []
       parameters:
         - in: path
-          name: transactionID
-          description: ID of a transaction
+          name: transactionId
+          description: id of a transaction
           required: true
           type: string
         - in: body
           name: note
-          description: New note for transaction
+          description: Note to be added to the transaction
           required: true
           schema: 
             $ref: '#/definitions/TransactionNote'
@@ -209,61 +212,62 @@ paths:
         '401':
           description: Unauthorized user
         '404':
-          description: Note not created
+          description: Transaction not found
         '500':
           description: Internal Server Error
-  /transactions/{transactionID}/note/{noteID}:
+
+  /transactions/{transactionId}/note/{noteId}:
     put:
       tags:
         - Accounts Module
       summary: Modify transaction's note
-      description: API for modifying a note of a transaction
+      description: API to update the note of a transaction
       security: 
         - Bearer: []
       parameters:
         - in: path
-          name: transactionID
-          description: ID of a transaction
+          name: transactionId
+          description: ID of the transaction
           required: true
           type: string
         - in: path
-          name: noteID
-          description: ID of a note
+          name: noteId
+          description: ID of the note
           required: true
           type: string
         - in: body
           name: note
-          description: Modify transaction's note
+          description: Modify note for the transaction
           required: true
           schema: 
             $ref: '#/definitions/TransactionNote'
       responses:
         '200':
-          description: Note modified successfully
+          description: Transaction note modified successfully
           schema:
             $ref: '#/definitions/TransactionResponseNote'
         '401':
           description: Unauthorized user
         '404':
-          description: Note not modified
+          description: Note of transaction not modified
         '500':
           description: Internal Server Error
     delete:
       tags:
         - Accounts Module
-      summary: Delete transaction's note
+      summary: Delete Transaction Note
       description: API to delete a note of a transaction
       security:
         - Bearer: []
       parameters:
         - in: path
-          name: transactionID
-          description: ID of a transaction
+          name: transactionId
+          description: ID of the transaction
           required: true
           type: string
         - in: path
           name: noteID
-          description: ID of a note
+          description: id of the note
           required: true
           type: string
       responses:
@@ -275,8 +279,6 @@ paths:
           description: Note not deleted
         '500':
           description: Internal Server Error
-
-
 
 securityDefinitions:
   Bearer:
@@ -334,14 +336,12 @@ definitions:
       userName:
         type: string
 
-
-
          AccountResponse:
       type: object
       properties:
         accountID:
           type: string
-          description: account ID
+          description: account id
         accountName:
           type: string
           description: account name
@@ -357,7 +357,7 @@ definitions:
     properties:
       transactionID: 
         type: string
-        description: transaction ID
+        description: transaction id
       transactionType:
         type: string
         description: type of transaction
@@ -370,7 +370,7 @@ definitions:
         description: description of transaction
       amount:
         type: number
-        description: transaction amout
+        description: transaction amount
       balance:
         type: number
         description: available balance
