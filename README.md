@@ -1,3 +1,5 @@
+THE CURRENT AND CORRECTED VERSION OF THIS PROJECT IS LOCATED ON THE master BRANCH, WITH FIXED DEPENDENCIES AND INDENTATION ISSUES. PLEASE REFER TO THE master BRANCH.
+
 # Argent Bank API
 
 This codebase contains the code needed to run the backend for Argent Bank.
